@@ -1,4 +1,4 @@
-const userService = require('../../database/services/userService');
+const userService = require('../../src/database/services/userService.js');
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
