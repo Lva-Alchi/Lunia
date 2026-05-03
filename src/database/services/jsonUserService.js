@@ -1,3 +1,33 @@
+const fs = require('fs').promises;
+const path = require('path');
+
+const DB_PATH = path.join(process.cwd(), 'database.json'); 
+
+async function readDB() {
+    try {
+        const data = await fs.readFile(DB_PATH, 'utf-8');
+        return JSON.parse(data);
+    } catch (error) {
+        if (error.code === 'ENOENT') {
+            const initialDB = { users: [] };
+            await writeDB(initialDB);
+            return initialDB;
+        }
+        console.error('Error reading database:', error);
+        throw error;
+    }
+}
+
+async function writeDB(db) {
+    try {
+        const data = JSON.stringify(db, null, 2); 
+        await fs.writeFile(DB_PATH, data, 'utf-8');
+    } catch (error) {
+        console.error('Error writing database:', error);
+        throw error;
+    }
+}
+
 module.exports = {
     // Function 1: Only SEARCH user data
     async getUser(telegramId) {
@@ -56,7 +86,6 @@ module.exports = {
         }
     },
 
-    
     async updateUser(telegramId, updateData) {
         try {
             const db = await readDB();
