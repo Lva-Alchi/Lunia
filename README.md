@@ -3,7 +3,7 @@
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen)](https://nodejs.org/)
 [![Framework](https://img.shields.io/badge/framework-Telegraf.js-blue)](https://telegraf.js.org/)
 [![Database](https://img.shields.io/badge/database-JSON%20%7C%20MongoDB-orange)](https://www.mongodb.com/)
-[![License](https://img.shields.io/badge/license-MIT-red)](LICENSE)
+![License](https://img.shields.io/badge/license-Apache%202.0-orange.svg?style=for-the-badge)
 
 A robust, production-ready Telegram Bot boilerplate built with **Telegraf.js**. This project features a modular architecture, advanced developer tools, and flexible database support (JSON/MongoDB) optimized for performance and scalability.
 
@@ -23,17 +23,26 @@ A robust, production-ready Telegram Bot boilerplate built with **Telegraf.js**. 
 
 ```text
 .
-├── commands/           # Bot command handlers
-│   └── tools/          # Tool-related commands (e.g., QR Gen)
-├── lib/
-│   ├── utils/          # Utility functions (Logger, DevTools)
-│   └── services/       # Database CRUD services (JSON/Mongo)
-├── .env                # Environment configuration
-├── .gitignore          # Files to be ignored by Git
-├── database.json       # Local storage (Auto-generated)
+├── commands          # Bot command handlers
+│   ├── admin           
+│   ├── games           
+│   ├── general         
+│   └── user            
+├── logs              # System logs (Errors, etc)
+│   └── A               
+├── src               # Core application code
+│   ├── database      # DB models and services
+│   ├── lib             # Core libraries and wrappers
+│   ├── locales         # Language translation files
+│   └── utils           # Helper functions
+├── .gitignore          
 ├── index.js            # Main entry point
-└── package.json        # Dependencies and scripts
-
+├── LICENSE             
+├── nodemon.json        # Nodemon configuration
+├── package-lock.json   # Locked dependencies tree
+├── package.json        # Project metadata and scripts
+├── README.md           # Project documentation
+└── sample.env          # Environment variables template
 ```
 
 ---
@@ -116,19 +125,16 @@ The application listens for `SIGINT` and `SIGTERM` signals. This ensures the bot
 
 ---
 
+## 📝 License
+
+This project is licensed under the APACHE 2.0 License - see the [LICENSE](https://github.com/Lva-Alchi/base-telegram-bot/blob/main/LICENSE) file for details.
+
+---
+
 ## 🤝 Support & Donation
 
 If this boilerplate accelerated your development workflow, consider supporting the project. Your contributions help maintain the repository and fund future feature development.
 
-* **💰 Digital Wallets**: [Insert Dana/Ovo/Gopay/PayPal Link]
-* **☕ Buy Me a Coffee**: [Insert Ko-fi/Trakteer/Patreon Link]
-
----
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
-
-```
-
-```
+* **💰 Trakteer**: [link](https://trakteer.id/alchiwak/gift)
+* **☕ Buy Me a Coffee**: [here](https://ko-fi.com/alchi)
+* 
