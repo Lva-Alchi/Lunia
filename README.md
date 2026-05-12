@@ -13,7 +13,6 @@ A robust, production-ready Telegram Bot boilerplate built with **Telegraf.js**. 
 
 * **🛡️ Advanced Developer Tools**: Integrated `eval`, `exec`, and `async eval` commands with strict administrator-only access via environment variables.
 * **📊 Modular Database Services**: Singleton-patterned CRUD operations supporting both local **JSON** storage and **MongoDB** (via Mongoose).
-* **🖼️ High-Quality QR Generator**: Professional QR code generation utilizing `qr-creator` and `canvas` with custom radius and styling.
 * **📁 Error Management**: Automated logging system for system-level fatal errors and user-level runtime exceptions.
 * **⚙️ Production Optimized**: Includes graceful shutdown protocols and Nodemon configuration to prevent restart loops during database writes.
 
@@ -137,4 +136,3 @@ If this boilerplate accelerated your development workflow, consider supporting t
 
 * **💰 Trakteer**: [link](https://trakteer.id/alchiwak/gift)
 * **☕ Buy Me a Coffee**: [here](https://ko-fi.com/alchi)
-* 
