@@ -208,7 +208,7 @@ bot.catch((err, ctx) => {
     ctx.reply('⚠️ Terjadi kesalahan sistem. Laporan error telah dibuat untuk Admin.').catch(() => {});
 });
 bot.launch().then(() => {
-    console.log(`\n\n🤖 Running...`);
+    console.log(`\n🤖 Running...`);
 });
 
 process.once('SIGINT', () => bot.stop('SIGINT'));
