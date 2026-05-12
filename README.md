@@ -3,7 +3,7 @@
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen)](https://nodejs.org/)
 [![Framework](https://img.shields.io/badge/framework-Telegraf.js-blue)](https://telegraf.js.org/)
 [![Database](https://img.shields.io/badge/database-JSON%20%7C%20MongoDB-orange)](https://www.mongodb.com/)
-![License](https://img.shields.io/badge/license-Apache%202.0-orange.svg?style=for-the-badge)
+[![License](https://img.shields.io/badge/license-Apache%202.0-red.svg?style=flat)](https://github.com/Lva-Alchi/base-telegram-bot/blob/main/LICENSE)
 
 A robust, production-ready Telegram Bot boilerplate built with **Telegraf.js**. This project features a modular architecture, advanced developer tools, and flexible database support (JSON/MongoDB) optimized for performance and scalability.
 
@@ -22,15 +22,15 @@ A robust, production-ready Telegram Bot boilerplate built with **Telegraf.js**. 
 
 ```text
 .
-├── commands          # Bot command handlers
+├── commands           # Bot command handlers
 │   ├── admin           
 │   ├── games           
 │   ├── general         
 │   └── user            
-├── logs              # System logs (Errors, etc)
+├── logs               # System logs (Errors, etc)
 │   └── A               
-├── src               # Core application code
-│   ├── database      # DB models and services
+├── src                 # Core application code
+│   ├── database        # DB models and services
 │   ├── lib             # Core libraries and wrappers
 │   ├── locales         # Language translation files
 │   └── utils           # Helper functions
@@ -57,7 +57,7 @@ A robust, production-ready Telegram Bot boilerplate built with **Telegraf.js**. 
 
 1. **Clone the repository:**
 ```bash
-git clone [https://github.com/Lva-Alchi/base-telegram-bot.git](https://github.com/Lva-Alchi/base-telegram-bot.git)
+git clone https://github.com/Lva-Alchi/base-telegram-bot.git
 cd base-telegram-bot
 
 ```
@@ -71,19 +71,26 @@ npm install
 
 
 3. **Configure Environment Variables:**
-Create a `.env` file in the root directory:
+<br/>Create a `.env` file in the root directory:
 ```env
-BOT_TOKEN=your_telegram_bot_token
-ADMIN_IDS=12345678,87654321
-MONGO_URI=your_mongodb_connection_string
+TELEGRAM_BOT_TOKEN=<your_token>
+ADMIN_IDS=<admin_accounts_id>
 
+# DB Engine : 'local' or 'mongodb'(cloud)
+DB_ENGINE=local
+# Paste Mongo URI here if using cloud (leave empty if using 'local')
+MONGODB_URI=
 ```
-
+  or copy and edit the `sample.env` file:
+```env
+cp sample.env .env
+nano .env
+```
 
 
 ---
 
-## 🖥️ Usage
+## 🖥️ Run
 
 ### Development Mode
 
@@ -114,7 +121,7 @@ Accessible only to IDs defined in the `ADMIN_IDS` environment variable.
 | `$` | Execute terminal/shell commands | `$ npm install` |
 | `>` | Evaluate single-line JavaScript | `> ctx.me` |
 | `=>` | Evaluate multi-line Async JS | `=> await ctx.reply('Hi')` |
-| `>` (Reply) | Dump message metadata | *Reply to any msg with `>*` |
+| `>` (Reply) | Dump message metadata | *Reply to any msg with `>`* |
 
 ---
 
