@@ -1,4 +1,8 @@
-# 🤖 Base Telegram Bot Framework
+<div align="center">
+  <img src="https://athars.space/uploads/726b6a48.png" width=80% height=80%> 
+</div>
+
+# 🤖 LUNIA - Chatbot Template 🌙
 
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen)](https://nodejs.org/)
 [![Framework](https://img.shields.io/badge/framework-Telegraf.js-blue)](https://telegraf.js.org/)
@@ -11,10 +15,17 @@ A robust, production-ready Telegram Bot boilerplate built with **Telegraf.js**. 
 
 ## 🚀 Core Features
 
-* **🛡️ Advanced Developer Tools**: Integrated `eval`, `exec`, and `async eval` commands with strict administrator-only access via environment variables.
 * **📊 Modular Database Services**: Singleton-patterned CRUD operations supporting both local **JSON** storage and **MongoDB** (via Mongoose).
 * **📁 Error Management**: Automated logging system for system-level fatal errors and user-level runtime exceptions.
 * **⚙️ Production Optimized**: Includes graceful shutdown protocols and Nodemon configuration to prevent restart loops during database writes.
+
+## 🚀 Additional Features 
+
+* **🛡️ Advanced Developer Tools**: Integrated `eval`, `exec`, and `async eval` commands with strict administrator-only access via environment variables.
+* **🗂️ Auto Detection Commands**: Automatically scans and loads command files from directories, removing the need for manual imports.
+* **🌐 Automatic Translation**: Translates text in real-time to provide seamless multi-language support.
+* **📑 Dynamic Command Menu**: Auto-generates a categorized help menu based on folder structure, featuring customizable headers.
+
 
 ---
 
