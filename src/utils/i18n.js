@@ -20,8 +20,18 @@ function loadLocales() {
 loadLocales();
 
 function translate(langCode, key, params = {}) {
-    // if language is not exist, set to 'id'(default)
-    let text = locales[langCode]?.[key] || locales['id']?.[key] || key;
+    // Helper function to resolve dot-notation paths (e.g., 'commands.ping.desc')
+    const resolvePath = (obj, path) => {
+        return path.split('.').reduce((acc, part) => acc && acc[part], obj);
+    };
+
+    // Attempt to find the text in the requested language, fallback to 'id', then fallback to the key itself
+    let text = resolvePath(locales[langCode], key) || resolvePath(locales['id'], key) || key;
+    
+    // Safety check: Ensure the resolved value is a string before attempting replacement
+    if (typeof text !== 'string') {
+        return key; 
+    }
     
     // Replace variable {key} with real data
     for (const [pKey, pValue] of Object.entries(params)) {

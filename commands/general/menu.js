@@ -18,10 +18,8 @@ module.exports = {
             let cmdNames = Array.isArray(cmd.name) 
                 ? cmd.name.map(n => `/${n}`).join(', ') 
                 : `/${cmd.name}`;
-console.log('Lang: ' + ctx.dbLang);
-console.log('key: ' + cmd.description);
             const cmdDesc = t(ctx.dbLang, cmd.description) || 'Tidak ada deskripsi';
-console.log('Result: ' + cmdDesc)
+
             categories[categoryName].push({ names: cmdNames, desc: cmdDesc });
         }
       
