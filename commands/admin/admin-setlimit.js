@@ -1,8 +1,9 @@
 const userService = require('../../src/database/services/userService.js');
+const t = require('../../src/utils/i18n.js');
 
 module.exports = {
     name: 'setlimit',
-    description: 'Mengubah limit kuota user',
+    description: t(ctx.dbLang, 'desc:setlimit'),
     showInMenu: true,
     async execute(ctx) {
         // 1. Cek Admin
@@ -15,7 +16,7 @@ module.exports = {
         const newLimit = parseInt(args[2]);
 
         if (!targetId || isNaN(newLimit)) {
-            return ctx.reply('⚠️ Format salah! Gunakan: `/setlimit <ID_USER> <JUMLAH>`', { parse_mode: 'Markdown' });
+            return ctx.reply(t(ctx.dbLang, 'wrong_format') + `/setlimit <USERID> <AMOUNT>`, { parse_mode: 'Markdown' });
         }
 
         // 3. Eksekusi Update
@@ -23,9 +24,9 @@ module.exports = {
         const updated = await userService.updateUser(targetId, { limitQuota: newLimit });
 
         if (updated) {
-            ctx.reply(`✅ Berhasil! Limit user \`${targetId}\` sekarang menjadi *${updated.limitQuota}*`, { parse_mode: 'Markdown' });
+            ctx.reply(t(ctx.dbLang, 'success:setlimit', { amount: updated.limitQuota }), { parse_mode: 'Markdown' });
         } else {
-            ctx.reply('❌ User tidak ditemukan di database.');
+            ctx.reply(t(ctx.dbLang, 'user:notfound'));
         }
     }
 };

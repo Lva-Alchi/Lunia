@@ -5,5 +5,9 @@
   "welcome_new": "🎉 Selamat datang {name}!\n\nID Kamu: `{id}`\n🎁 Modal awal: *{quota} Kuota*",
   "welcome_back": "Selamat datang kembali __*{name}*__! 👋\n\n🆔 User-`{id}`\n⚡  Kamu memiliki *{quota}* kuota penggunaan tersia.",
   "access_denied": "⛔ Akses Ditolak.",
-  "lang_changed": "✅ Bahasa berhasil diubah"
+  "lang_changed": "✅ Bahasa berhasil diubah",
+  "wrong_format": "*Format salah!*\nGunakan:\n",
+  "user:notfound": "❌ User tidak ditemukan!",
+  "success:setlimit": "✅ Limit user berhasil diubah ke *{amount}*",
+  "desc:setlimit": "Mengubah jumlah limit user"
 }
