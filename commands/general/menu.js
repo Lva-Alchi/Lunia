@@ -25,7 +25,7 @@ module.exports = {
         }
         
       const raw = t(ctx.dbLang, 'listmenu');
-      const styled = fontStyle(raw, serifBold);
+      const styled = fontStyle(raw, 'serifBold');
       let menuText = `༺ ` + styled + ` ༻\n\n`;
 
       for (const [category, commands] of Object.entries(categories)) {
