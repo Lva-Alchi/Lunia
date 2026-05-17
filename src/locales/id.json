@@ -1,4 +1,12 @@
 {
+  "desc": {
+    "setlimit": "Mengubah jumlah limit user",
+    "menu": "Menampilkan daftar perintah yang tersedia",
+    "delUser": "Menghapus akun pengguna",
+    "npq": "Cek keamanan package NPM menggunakan NPQ",
+    "install": "Menginstall package dari NPM",
+    "uninstall": "Menghapus package NPM dari sistem"
+  },
   "not_registered": "Wah, Selamat Datang {name}!\n\nKamu pengguna baru ya...🤩\nDaftar dulu yuk pakai /login biar bisa lanjut.",
   "register_success": "✅ Akun berhasil didaftarkan\n\nID Kamu:\n USER-`{id}`\n⚡ Kamu mendapatkan *{quota}* limit penggunaan bot",
   "alreadyRegistered": "Kamu sudah terdaftar dengan 🆔 USER-`{id}`\nKamu punya *{quota}* limit penggunaan tersisa!",
@@ -6,10 +14,13 @@
   "welcome_back": "Selamat datang kembali __*{name}*__! 👋\n\n🆔 User-`{id}`\n⚡  Kamu memiliki *{quota}* kuota penggunaan tersia.",
   "access_denied": "⛔ Akses Ditolak.",
   "lang_changed": "✅ Bahasa berhasil diubah",
-  "wrong_format": "*Format salah!*\nGunakan:\n",
+  "wrong_format": "*Format salah!*\nGunakan:\n\n",
+  "wrong_command": "*Perintah salah!*\nGunakan: ",
+  "invalid": "Error❗\nTidak valid atau mengandung karakter terlarang.",
   "user:notfound": "❌ User tidak ditemukan!",
   "success:setlimit": "✅ Limit user berhasil diubah ke *{amount}*",
-  "desc": {
-    "setlimit": "Mengubah jumlah limit user"
-  }
+  "listmenu": "Daftar Perintah Bot",
+  "success": "✅ **Operasi berhasil!**",
+  "error": "🚨 **Operasi gagal!**",
+  "loading": "⏰ **Sedang diproses...**"
 }

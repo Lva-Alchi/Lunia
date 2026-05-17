@@ -1,29 +1,32 @@
 const { Markup } = require('telegraf');
 const t = require('../../src/utils/i18n');
+const { fontStyle } = require('../../src/lib/function');
 
 module.exports = {
     name: 'menu',
-    description: 'Menampilkan Menu Utama interaktif',
+    description: 'desc.menu',
     showInMenu: true,
     async execute(ctx) {
-      const unique = new Set(ctx.commandsList.values()); //Cegah duplikasi
+      const unique = new Set(ctx.commandsList.values()); //avoid duplication
       const categories = {};
       
       for (const cmd of unique) {
             if (cmd.showInMenu === false) continue;
-            const categoryName = cmd.category || '📦 Lainnya';
+            const categoryName = cmd.category || '📦 Others';
             if (!categories[categoryName]) {
                 categories[categoryName] = [];
             }
             let cmdNames = Array.isArray(cmd.name) 
                 ? cmd.name.map(n => `/${n}`).join(', ') 
                 : `/${cmd.name}`;
-            const cmdDesc = t(ctx.dbLang, cmd.description) || 'Tidak ada deskripsi';
+            const cmdDesc = t(ctx.dbLang, cmd.description) || ' ';
 
             categories[categoryName].push({ names: cmdNames, desc: cmdDesc });
         }
-      
-      let menuText = "༺ 𝐃𝐚𝐟𝐭𝐚𝐫 𝐏𝐞𝐫𝐢𝐧𝐭𝐚𝐡 𝐁𝐨𝐭 ༻\n\n";
+        
+      const raw = t(ctx.dbLang, 'listmenu');
+      const styled = fontStyle(raw, serifBold);
+      let menuText = `༺ ` + styled + ` ༻\n\n`;
 
       for (const [category, commands] of Object.entries(categories)) {
           menuText += `┏━━─> ${category}\n`;
@@ -33,12 +36,12 @@ module.exports = {
           menuText += `\n`;
         };
 
-      // Membuat Reply Keyboard (Menu Bawah)
-      const keyboard = Markup.keyboard([
-          ['👤 Profil', '💳 Cek Kuota'], // Baris 1: Dua tombol sejajar
-          ['❌ Close ']                   // Baris 2: Satu tombol lebar
-        ]).resize(); // PENTING: Agar ukuran tombol mengecil menyesuaikan layar HP
+      // Reply Keyboard (Menu Bawah)
+      /*const keyboard = Markup.keyboard([
+          ['👤 Profile', '💳 limit'], // row 1
+          ['❌ Close ']  //row 2
+        ]).resize(); // Auto resize to match the device*/
 
-      await ctx.replyWithMarkdown(menuText, keyboard);
+      await ctx.replyWithMarkdown(menuText/*, keyboard*/);
     }
 };

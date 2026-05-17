@@ -6,21 +6,17 @@ module.exports = {
     description: 'desc.setlimit',
     showInMenu: true,
     async execute(ctx) {
-        // 1. Cek Admin
         const adminIds = process.env.ADMIN_IDS.split(',');
-        if (!adminIds.includes(ctx.from.id.toString())) return ctx.reply('⛔ Akses Ditolak.');
+        if (!adminIds.includes(ctx.from.id.toString())) return ctx.reply(t(ctx.dbLang, 'access_denied'));
 
-        // 2. Ambil Argumen (Format: /setlimit 12345 80)
         const args = ctx.message.text.split(' ');
         const targetId = args[1];
         const newLimit = parseInt(args[2]);
 
         if (!targetId || isNaN(newLimit)) {
-            return ctx.reply(t(ctx.dbLang, 'wrong_format') + `/setlimit <USERID> <AMOUNT>`, { parse_mode: 'Markdown' });
+            return ctx.reply(t(ctx.dbLang, 'wrong_format') + `/setlimit <USER_ID> <AMOUNT>`, { parse_mode: 'Markdown' });
         }
 
-        // 3. Eksekusi Update
-        // Kita hanya mengirim { limitQuota: newLimit } ke fungsi updateUser
         const updated = await userService.updateUser(targetId, { limitQuota: newLimit });
 
         if (updated) {

@@ -3,13 +3,13 @@ const t = require('../../src/utils/i18n.js');
 
 module.exports = {
   name: 'delUser',
-  description: 'Menghapus database target user',
+  description: 'desc.delUser',
   showInMenu: true,
   async execute(ctx) {
     const adminIds = process.env.ADMIN_IDS.split(',');
     const userId = ctx.from.id.toString();
     if (!adminIds.includes(userId)) {
-        return ctx.reply('⛔ Akses Ditolak: Kamu bukan Admin.');
+        return ctx.reply(t(ctx.dbLang, 'access_denied'));
     }
     
     const text = ctx.message.text;
@@ -18,7 +18,7 @@ module.exports = {
     const targetIds = args.slice(1);
     
     if (targetIds.length === 0) {
-      return ctx.reply('⚠️ Harap masukkan setidaknya satu ID user.\nFormat: `/deleteUser <id1> <id2> ...`', { parse_mode: 'Markdown' });
+      return ctx.reply(t(ctx.dbLang, 'wrong_format') + '`/delUser <id1> <id2> ...`', { parse_mode: 'Markdown' });
         }
     let successCount = 0;
     for (const targetId of targetIds) {
@@ -26,9 +26,9 @@ module.exports = {
       if (deleted) successCount++;
         }
     if (successCount > 0) {
-      return ctx.reply(`🗑️ Selesai: Berhasil menghapus ${successCount} dari ${targetIds.length} user.`);
+      return ctx.reply(t(ctx.dbLang, 'success') + ` *${successCount}/${targetIds.length}* 🗑️`, { parse_mode: "Markdown" });
     } else {
-      return ctx.reply('‼️Error: User tidak dalam database bot')
+      return ctx.reply(t(ctx.dbLang, 'user:notfound'))
     }
   }
 };
