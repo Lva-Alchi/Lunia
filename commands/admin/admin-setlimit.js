@@ -14,7 +14,7 @@ module.exports = {
         const newLimit = parseInt(args[2]);
 
         if (!targetId || isNaN(newLimit)) {
-            return ctx.reply(t(ctx.dbLang, 'wrong_format') + `/setlimit <USER_ID> <AMOUNT>`, { parse_mode: 'Markdown' });
+            return ctx.reply(t(ctx.dbLang, 'wrong_format') + "`/setlimit <USER_ID> <AMOUNT>`", { parse_mode: 'Markdown' });
         }
 
         const updated = await userService.updateUser(targetId, { limitQuota: newLimit });
