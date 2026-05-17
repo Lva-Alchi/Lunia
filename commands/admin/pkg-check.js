@@ -15,7 +15,7 @@ module.exports = {
         const pkgName = textParts[1];
 
         if (!pkgName || !/^[a-zA-Z0-9\-_.@\/]+$/.test(pkgName)) {
-            return ctx.reply(t(ctx.dbLang, 'wrong_format') + ' /npq <package>');
+            return ctx.reply(t(ctx.dbLang, 'wrong_format') + ' /npq <package>', { parse_mode: "Markdown"});
         }
 
         ctx.reply(t(ctx.dbLang, 'loading'), { parse_mode: 'Markdown' });
