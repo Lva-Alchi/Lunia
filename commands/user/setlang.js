@@ -26,9 +26,11 @@ module.exports = {
         };
 
         // Update Database
-        try {
         const updatedUser = await userService.updateUser(userId, { language: newLang });
-        ctx.dbLang = updatedUser.language
+        
+        //try caching
+        try {
+          ctx.dbLang = updatedUser.language
         } catch (err) {
           ctx.reply(t(ctx.dbLang, 'InternalError'));
           console.log('[Ei18n]: ' + err)
