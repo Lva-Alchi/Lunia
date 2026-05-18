@@ -68,7 +68,7 @@ bot.use(async (ctx, next) => {
 
     // Caching
     ctx.dbUser = userData;
-    ctx.dbLang = userLang;
+    ctx.dbLang = userData.language;
     return next();
 });
 
