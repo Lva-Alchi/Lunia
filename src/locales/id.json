@@ -5,15 +5,32 @@
     "delUser": "Menghapus akun pengguna",
     "npq": "Cek keamanan package NPM menggunakan NPQ",
     "install": "Menginstall package dari NPM",
-    "uninstall": "Menghapus package NPM dari sistem"
+    "uninstall": "Menghapus package NPM dari sistem",
+    "power": "Stop/Restart bot dari telegram",
+    "ban": "Ban/Un-Ban user dari mengakses bot",
+    "slots": "Main slot 3x3 (Harga: 1 limit)",
+    "login": "Buat akun pertamamu!",
+    "help": "Tampilkan panduan penggunaan bot",
+    "start": "Memulai percakapan dengan bot!",
+    "setlang": "Mengubah bahasa bot ke bahasa lain",
+    "profile": "Menampilkan data akun pengguna"
   },
+  "games": {
+    "slot": {
+      "jackpot": "🎉 **J A C K P O T ! ! !** 🎉\n🔥 Gila! Kamu memenangkan **{reward} Kuota**!\n",
+      "bigWin": "✨ **MENANG!**\nKamu mendapatkan **{reward} Kuota**.\n",
+      "win": "👍 **Balik Modal!** Kamu mendapatkan **{reward} Kuota**.\n",
+      "lose": "💀 **ZONK!** Sayang sekali, coba lagi ya.\n"
+    }
+  },
+  "helpMessage": "*Panduan Penggunaan Bot*🛠️\nBerikut adalah perintah yang bisa kamu gunakan:\n/start - Memulai percakapan dengan bot\n/help - Menampilkan pesan bantuan ini\n/login - Daftar untuk pertama kali !\n\nScript Bot dibuat oleh Alchi (Lva-Alchi)",
   "not_registered": "Wah, Selamat Datang {name}!\n\nKamu pengguna baru ya...🤩\nDaftar dulu yuk pakai /login biar bisa lanjut.",
   "register_success": "✅ Akun berhasil didaftarkan\n\nID Kamu:\n USER-`{id}`\n⚡ Kamu mendapatkan *{quota}* limit penggunaan bot",
   "alreadyRegistered": "Kamu sudah terdaftar dengan 🆔 USER-`{id}`\nKamu punya *{quota}* limit penggunaan tersisa!",
   "welcome_new": "🎉 Selamat datang {name}!\n\nID Kamu: `{id}`\n🎁 Modal awal: *{quota} Kuota*",
   "welcome_back": "Selamat datang kembali __*{name}*__! 👋\n\n🆔 User-`{id}`\n⚡  Kamu memiliki *{quota}* kuota penggunaan tersia.",
   "access_denied": "⛔ Akses Ditolak.",
-  "lang_changed": "✅ Bahasa berhasil diubah",
+  "lang_changed": "✅ Bahasa berhasil diubah ke Indonesia",
   "wrong_format": "*Format salah!*\nGunakan: ",
   "wrong_command": "*Perintah salah!*\nGunakan: ",
   "invalid": "Error❗\nTidak valid atau mengandung karakter terlarang.",
@@ -21,6 +38,17 @@
   "success:setlimit": "✅ Limit user berhasil diubah ke *{amount}*",
   "listmenu": "Daftar Perintah Bot",
   "success": "✅ **Operasi berhasil!**",
-  "error": "🚨 **Operasi gagal!**",
-  "loading": "⏰ **Sedang diproses...**"
+  "error": "🚨 *Operasi gagal!*",
+  "loading": "⏰ *Sedang diproses...*",
+  "bot_stop": "🛑 *Bot sedang dimatikan...*\nSelamat tinggal!👋",
+  "bot_restart": "♻️ *Memulai ulang bot...*\nMohon tunggu",
+  "multiInput": "```Mendukung input lebih dari satu```",
+  "missingInput": "Mohon isi parameter input...\n",
+  "insufficient": "⚠️ Maaf, Limit anda tidak mencukupi",
+  "remainingQuota": "🔋 Sisa kuota kamu: *{quota}*",
+  "unavailable": "❗Maaf, pilihan  anda tidak tersedia, silahkan lihat daftar pilihan",
+  "banned": "🚫 **AKUN DIBLOKIR**\n\nMaaf, kamu telah diblokir oleh Admin karena melanggar aturan dan tidak dapat menggunakan bot ini lagi.",
+  "is_banned": "Akun kamu telah diblokir !",
+  "signFirst": "🛑 **Akses Ditolak!**\n\nKamu belum terdaftar di sistem kami. Silakan registrasi terlebih dahulu untuk menggunakan fitur bot.",
+  "internalError": "❗ Maaf, terjadi kesalahan internal"
 }

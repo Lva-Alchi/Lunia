@@ -3,7 +3,7 @@ const t = require('../../src/utils/i18n.js');
 
 module.exports = {
       name: 'login',
-      description: 'login to create your first account!',
+      description: 'desc.login',
       showInMenu: true,
       async execute(ctx) {
         const userId = ctx.from.id;

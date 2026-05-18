@@ -16,6 +16,7 @@ const fs = require('fs');
 const path = require('path');
 const { logSystemError, logUserError } = require('./src/utils/logger');
 const setupDevTools = require('./src/utils/devtools');
+const t = require('./src/utils/i18n');
 
 const token = process.env.TELEGRAM_BOT_TOKEN;
 const bot = new Telegraf(token);
@@ -37,10 +38,10 @@ bot.use(async (ctx, next) => {
     
     //Block Banned user
     if (userData && userData.isBanned) {
-        const pesanBanned = '🚫 **AKUN DIBLOKIR**\n\nMaaf, kamu telah diblokir oleh Admin karena melanggar aturan dan tidak dapat menggunakan bot ini lagi.';
+        const pesanBanned = t(ctx.dbLang, 'banned');
         
         if (ctx.message) return await ctx.reply(pesanBanned, { parse_mode: 'Markdown' });
-        if (ctx.callbackQuery) return await ctx.answerCbQuery('Akun kamu telah diblokir Admin!', { show_alert: true });
+        if (ctx.callbackQuery) return await ctx.answerCbQuery(t(ctx.dbLang, 'is_banned'), { show_alert: true });
         
         return;
     }
@@ -52,7 +53,7 @@ bot.use(async (ctx, next) => {
     }
 
     if (!userData) {
-        const pesanTolak = '🛑 **Akses Ditolak!**\n\nKamu belum terdaftar di sistem kami. Silakan registrasi terlebih dahulu untuk menggunakan fitur bot.';
+        const pesanTolak = t(ctx.from.language_code, 'signFirst');
         const tombolMulai = {
             reply_markup: {
                 inline_keyboard: [[ { text: '🚀 Login / Sign-Up', callback_data: 'btn_login' } ]]
@@ -61,7 +62,7 @@ bot.use(async (ctx, next) => {
         };
 
         if (ctx.message) return await ctx.reply(pesanTolak, tombolMulai);
-        if (ctx.callbackQuery) return await ctx.answerCbQuery('Akses ditolak! Silakan registrasi dulu.', { show_alert: true });
+        if (ctx.callbackQuery) return await ctx.answerCbQuery(t(ctx.from.language_code, 'signFirst'), { show_alert: true });
         return;
     }
 
@@ -93,7 +94,7 @@ function readAllCommandFiles(dir) {
     let files = [];
     
     if (!fs.existsSync(dir)) {
-        console.log(`[ERROR] Folder tidak ditemukan: ${dir}`);
+        console.log(`[ERROR] Folder not found: ${dir}`);
         return files;
     }
 
@@ -104,7 +105,7 @@ function readAllCommandFiles(dir) {
         const stat = fs.statSync(fullPath);
 
         if (stat.isDirectory()) {
-            console.log(`[SCAN] Memasuki subfolder: ${item}/`);
+            console.log(`[SCAN] Scanning Sub-Folder: ${item}/`);
             files = files.concat(readAllCommandFiles(fullPath));
         } else if (item.endsWith('.js')) {
             files.push(fullPath);
@@ -139,7 +140,7 @@ for (const filePath of commandFiles) {
                         await command.execute(ctx);
                     } catch (error) {
                         console.error(`Error while executing /${name}:`, error);
-                        await ctx.reply('Maaf, terjadi kesalahan internal.');
+                        await ctx.reply(t(ctx.from.language_code, 'InternalError'));
                     }
                 });
                 console.log(`✅ Loaded: /${name} (Category: ${command.category || '📦 Other'})`);
@@ -150,7 +151,7 @@ for (const filePath of commandFiles) {
     } catch (err) {
         console.error(`❌ Failed to load: ${filePath}\nError:`, err.message);
         logUserError(err, ctx);
-        ctx.reply('Maaf, terjadi kesalahan saat menjalankan perintah tersebut.').catch(() => {});
+        ctx.reply(t(ctx.from.language_code, 'InternalError')).catch(() => {});
     }
 }
 console.log('--------------------------------\n');
@@ -164,21 +165,21 @@ bot.action('btn_login', async (ctx) => {
         ctx.message = { text: '/login' }; 
         await startCommand.execute(ctx);
     } else {
-        await ctx.reply('Silakan ketik /login secara manual ya.');
+        await ctx.reply('Click this: /login');
     }
 });
 
-bot.hears('👤 Profil', async (ctx) => {
+bot.hears('👤 Profile', async (ctx) => {
     const profilCommand = bot.commandsList.get('profil');
     if (profilCommand) await profilCommand.execute(ctx);
 });
 
-bot.hears('💳 Cek Kuota', async (ctx) => {
-    await ctx.reply(`🔋 Sisa Kuota kamu saat ini adalah: *${ctx.dbUser.limitQuota}*`, { parse_mode: 'Markdown' });
+bot.hears('💳 Quota', async (ctx) => {
+    await ctx.reply(t(ctx.dbLang, 'remainingQuota', {quota: ctx.dbUser.limitQuota}), { parse_mode: 'Markdown' });
 });
 
 bot.hears('❌ Close', async (ctx) => {
-    await ctx.reply('Menu ditutup. Ketik /menu untuk membuka kembali.', Markup.removeKeyboard());
+    await ctx.reply('🛑 Menu Closed', Markup.removeKeyboard());
 });
 
 bot.action('action_lang_en', async (ctx) => {
@@ -205,7 +206,7 @@ connectDB();
 bot.catch((err, ctx) => {
     console.error(`[TELEGRAF ERROR]`, err);
     logUserError(err, ctx);
-    ctx.reply('⚠️ Terjadi kesalahan sistem. Laporan error telah dibuat untuk Admin.').catch(() => {});
+    ctx.reply(t(ctx.from.language_code, 'InternalError')).catch(() => {});
 });
 bot.launch().then(() => {
     console.log(`\n🤖 Running...`);

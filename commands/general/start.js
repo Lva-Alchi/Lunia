@@ -3,7 +3,7 @@ const t = require('../../src/utils/i18n');
 
 module.exports = {
     name: 'start',
-    description: 'Memulai percakapan dengan bot',
+    description: 'desc.start',
     showInMenu: true,
     async execute(ctx) {
         const userId = ctx.from.id;

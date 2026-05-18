@@ -3,26 +3,43 @@ const t = require('../../src/utils/i18n.js');
 
 module.exports = {
     name: 'setlang',
-    description: 'Mengubah bahasa bot (id/en)',
+    description: 'desc.setlang',
     showInMenu: true,
     async execute(ctx) {
         const userId = ctx.from.id;
         const args = ctx.message.text.split(' ');
         const newLang = args[1]?.toLowerCase();
+        
+        //languange that are available
+        const available = [
+          {code: 'id', name: 'Indonesia'}, 
+          {code: 'en', name: 'English'}
+          ];
+        
+        const langText = available.map(lang => `${lang.name} (${lang.code})`).join(', ')
+            
+        const isAvailable = available.some(lang => lang.code === newLang);
+        
+        // Valiate input
+        if (!newLang || !isAvailable) {
+            return ctx.reply(t(ctx.dbLang, 'unavailable') + `\n\n*📃 List :*\n${langText}`, { parse_mode: 'Markdown' });
+        };
 
-        // Validasi input
-        if (newLang !== 'id' && newLang !== 'en') {
-            return ctx.reply('⚠️ Format salah! Gunakan: `/setlang id` atau `/setlang en`', { parse_mode: 'Markdown' });
-        }
-
-        // Update bahasa user di Database
+        // Update Database
         const updatedUser = await userService.updateUser(userId, { language: newLang });
 
         if (updatedUser) {
             const msg = t(updatedUser.language, 'lang_changed');
             ctx.reply(msg);
         } else {
-            ctx.reply('❌ Kamu belum terdaftar. Ketik /login dulu.');
+          const userLangCode = ctx.from.language_code?.toLowerCase();
+          const isCodeAvailable = available.some(lang => lang.code === userLangCode);
+          
+          if ( userLangCode && isCodeAvailable ) {
+            ctx.reply(t(userLangCode, 'access_denied'));
+          } else {
+            ctx.reply(t('en', 'access_denied'));
+          }
         }
     }
 };

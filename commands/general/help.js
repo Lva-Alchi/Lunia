@@ -1,20 +1,11 @@
+const t = require('../../src/utils/i18n.js');
+
 module.exports = {
     name: 'help',
-    description: 'Menampilkan panduan penggunaan bot',
+    description: 'desc.help',
     showInMenu: true,
     async execute(ctx) {
-        const helpMessage = `
-*Panduan Penggunaan Bot* 🛠️
-
-Berikut adalah perintah yang bisa kamu gunakan:
-/start - Memulai percakapan dengan bot
-/help - Menampilkan pesan bantuan ini
-/login - Daftar untuk pertama kali !
-
-Bot Under Development!
-        `;
-
-        // Membalas pesan dengan format Markdown
+        const helpMessage = t(ctx.dbLang, 'helpMessage');
         ctx.replyWithMarkdown(helpMessage);
     }
 };

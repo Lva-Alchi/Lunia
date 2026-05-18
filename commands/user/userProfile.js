@@ -3,25 +3,24 @@ const { Markup } = require('telegraf');
 
 module.exports = {
     name: 'profile',
-    description: 'Menampilkan informasi profil pengguna',
+    description: 'desc.profile',
     showInMenu: true,
     async execute(ctx) {
         const user = ctx.dbUser;
-        const pesan = `👤 **INFORMASI PROFIL**\n\n` +
-                      `🆔 Sistem ID: \`${user.customId}\`\n` +
-                      `🗣️ Bahasa Saat Ini: *${user.language.toUpperCase()}*\n` +
-                      `🔋 Sisa Kuota: *${user.limitQuota}*`;
+        const pesan = `👤 **USER PROFILE**\n\n` +
+                      `🆔 System ID: \`${user.customId}\`\n` +
+                      `🗣 Language : *${user.language.toUpperCase()}*\n` +
+                      `🔋 Quota: *${user.limitQuota}*`;
 
-        // Membuat Inline Keyboard (Tombol Transparan)
         const inlineKeyboard = Markup.inlineKeyboard([
-            // Baris 1: Tombol ganti bahasa
+            // Row 1: change language
             [
                 Markup.button.callback('🇺🇸 English', 'action_lang_en'), 
                 Markup.button.callback('🇮🇩 Indonesia', 'action_lang_id')
             ],
-            // Baris 2: Tombol tutup (hapus pesan)
+            // Row 2 : close (delete chat)
             [
-                Markup.button.callback('❌ Tutup Profil', 'action_tutup')
+                Markup.button.callback('❌  Close', 'action_tutup')
             ]
         ]);
 

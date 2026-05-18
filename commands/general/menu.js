@@ -36,7 +36,7 @@ module.exports = {
           menuText += `\n`;
         };
 
-      // Reply Keyboard (Menu Bawah)
+      // Reply Keyboard (Bottom Menu)
       /*const keyboard = Markup.keyboard([
           ['👤 Profile', '💳 limit'], // row 1
           ['❌ Close ']  //row 2
