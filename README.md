@@ -152,5 +152,7 @@ This project is licensed under the APACHE 2.0 License - see the [LICENSE](https:
 
 If this boilerplate accelerated your development workflow, consider supporting the project. Your contributions help maintain the repository and fund future feature development.
 
-* **💰 Trakteer**: [link](https://trakteer.id/alchiwak/gift)
-* **☕ Buy Me a Coffee**: [here](https://ko-fi.com/alchi)
+<p align="center">
+  <a href="https://ko-fi.com/alchi"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Ko-Fi"></a>
+  <a href="https://trakteer.id/alchiwak/gift"><img src="https://img.shields.io/badge/Trakteer-red?style=for-the-badge&logo=Trakteer&color=BD2426" alt="Trakteer"</a>
+</p>
