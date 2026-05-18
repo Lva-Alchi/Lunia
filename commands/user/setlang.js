@@ -10,7 +10,7 @@ module.exports = {
         const args = ctx.message.text.split(' ');
         const newLang = args[1]?.toLowerCase();
         
-        //languange that are available
+        //list of available language
         const available = [
           {code: 'id', name: 'Indonesia'}, 
           {code: 'en', name: 'English'}
@@ -26,15 +26,22 @@ module.exports = {
         };
 
         // Update Database
+        try {
         const updatedUser = await userService.updateUser(userId, { language: newLang });
+        ctx.dbLang = updatedUser.language
+        } catch (err) {
+          ctx.reply(t(ctx.dbLang, 'InternalError'));
+          console.log('[Ei18n]: ' + err)
+        };
 
         if (updatedUser) {
-            const msg = t(updatedUser.language, 'lang_changed');
+            const msg = t(ctx.dbLang, 'lang_changed');
             ctx.reply(msg);
         } else {
           const userLangCode = ctx.from.language_code?.toLowerCase();
           const isCodeAvailable = available.some(lang => lang.code === userLangCode);
           
+        //if user lang is unavailable, set default to 'en'
           if ( userLangCode && isCodeAvailable ) {
             ctx.reply(t(userLangCode, 'access_denied'));
           } else {
