@@ -21,7 +21,7 @@ class MongoUserService {
      * @param {string} [language='id'] - The user's preferred language code.
      * @returns {Promise<Object>} The newly created user document.
     */
-    async createUser(telegramId, username, language = 'id') {
+    async createUser(telegramId, username, language = 'en') {
         try {
             const newUser = new User({
                 telegramId: telegramId.toString(),
@@ -88,6 +88,4 @@ class MongoUserService {
     }
 }
 
-// Export a single instance of the class (Singleton pattern) 
-// to ensure a consistent connection interface across the application.
 module.exports = new MongoUserService();

@@ -3,13 +3,12 @@ const path = require('path');
 
 class JsonUserService {
     constructor() {
-        // Menetapkan lokasi database di root project
         this.dbPath = path.join(process.cwd(), 'database.json');
     }
 
     /**
-     * Membaca file JSON dan mengonversinya menjadi objek JavaScript
-     * Jika file tidak ada, otomatis membuat file baru dengan struktur awal
+     * auto read JSON file and convert to JavaScript object
+     * automatically make one if didn't exist
      */
     async _readDB() {
         try {
@@ -26,14 +25,14 @@ class JsonUserService {
     }
 
     /**
-     * Menyimpan objek JavaScript kembali ke file database.json
+     * Saving JavaScript object to database.json
      */
     async _writeDB(data) {
         await fs.writeFile(this.dbPath, JSON.stringify(data, null, 2), 'utf-8');
     }
 
     /**
-     * Mencari data user berdasarkan Telegram ID
+     * Search user data by Telegram ID
      */
     async getUser(telegramId) {
         const db = await this._readDB();
@@ -42,7 +41,7 @@ class JsonUserService {
     }
 
     /**
-     * Mendaftarkan user baru ke dalam database
+     * Creating new user to database
      */
     async createUser(telegramId, username, language = 'id') {
         const db = await this._readDB();
@@ -60,12 +59,12 @@ class JsonUserService {
         db.users.push(newUser);
         await this._writeDB(db);
         
-        console.log(`[DB-JSON] User baru terdaftar: ${username}`);
+        console.log(`[DB-JSON] New users created: ${username}`);
         return newUser;
     }
 
     /**
-     * Memperbarui data user yang sudah ada (merge data lama dengan data baru)
+     * Update user data 
      */
     async updateUser(telegramId, updateData) {
         const db = await this._readDB();
@@ -80,7 +79,7 @@ class JsonUserService {
     }
 
     /**
-     * Menghapus satu atau banyak user sekaligus berdasarkan array ID
+     * Delete multiple user by user ID array
      */
     async deleteUsers(telegramIds) {
         const db = await this._readDB();
@@ -94,5 +93,4 @@ class JsonUserService {
     }
 }
 
-// Mengekspor instance dari class agar bisa langsung digunakan (Singleton Pattern)
 module.exports = new JsonUserService();
