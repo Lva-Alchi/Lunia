@@ -57,7 +57,7 @@ function fontStyle(text, style = 'bold') {
  * @returns {Array<{code: string, name: string}>} List of available languages.
  */
 function getAvailableLanguage(localesDir = '../locales') {
-    const availableLanguages = [];
+    const availableLanguage = [];
     const dirPath = path.resolve(__dirname, localesDir); // Get absolute path
 
     try {
@@ -72,7 +72,7 @@ function getAvailableLanguage(localesDir = '../locales') {
                 const parsedLocale = JSON.parse(fileContent); // Parse JSON
 
                 // Add to list with fallback name
-                availableLanguages.push({
+                availableLanguage.push({
                     code: langCode,
                     name: parsedLocale.langName || langCode.toUpperCase()
                 });
@@ -82,10 +82,10 @@ function getAvailableLanguage(localesDir = '../locales') {
         console.error(`[i18n Error] Failed to read locales:`, error.message); // Handle errors
     }
 
-    return availableLanguages;
+    return availableLanguage;
 }
 
 module.exports = {
   fontStyle,
-  getAvailableLanguages
+  getAvailableLanguage
 }
