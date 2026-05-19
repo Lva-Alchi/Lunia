@@ -17,6 +17,7 @@ const path = require('path');
 const { logSystemError, logUserError } = require('./src/utils/logger');
 const setupDevTools = require('./src/utils/devtools');
 const t = require('./src/utils/i18n');
+const { getAvailableLanguage } = require('./src/lib/function');
 
 const token = process.env.TELEGRAM_BOT_TOKEN;
 const bot = new Telegraf(token);
@@ -29,10 +30,13 @@ bot.use(async (ctx, next) => {
     const userId = ctx.from.id;
     const tks = ctx.message?.text || '';
     const callbackData = ctx.callbackQuery?.data || '';
-
-    const rawLang = ctx.from.language_code || 'id';
+    
+    //defined user language
+    const available = getAvailableLanguage();
+    const rawLang = ctx.from.language_code || 'en';
     let userLang = rawLang.substring(0, 2).toLowerCase();
-    if (userLang !== 'id' && userLang !== 'en') { userLang = 'id' };
+    const isAvailable = available.some(lang => lang.code === userLang);
+    if (!isAvailable) { userLang = 'en' };
     
     const userData = await userService.getUser(userId); //get data by userId
     
