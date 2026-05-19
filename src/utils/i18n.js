@@ -20,12 +20,15 @@ function loadLocales() {
 loadLocales();
 
 function translate(langCode, key, params = {}) {
+    
     const resolvePath = (obj, path) => {
         return path.split('.').reduce((acc, part) => acc && acc[part], obj);
     };
 
-    let text = resolvePath(locales[langCode], key) || resolvePath(locales['id'], key) || key;
+    //fallback
+    let text = resolvePath(locales[langCode], key) || resolvePath(locales['en'], key) || key;
     
+    //validate data type
     if (typeof text !== 'string') {
         return key; 
     }
