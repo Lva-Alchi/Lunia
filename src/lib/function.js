@@ -56,7 +56,7 @@ function fontStyle(text, style = 'bold') {
  * @param {string} localesDir - Path to locales folder (default: './locales').
  * @returns {Array<{code: string, name: string}>} List of available languages.
  */
-function getAvailableLanguages(localesDir = '../locales') {
+function getAvailableLanguage(localesDir = '../locales') {
     const availableLanguages = [];
     const dirPath = path.resolve(__dirname, localesDir); // Get absolute path
 
