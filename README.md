@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://athars.space/uploads/726b6a48.png" width=80% height=80%> 
+  <img src="./src/images/logo.png" width=80% height=80%> 
 </div>
 
 # 🤖 LUNIA - Chatbot Template 🌙
